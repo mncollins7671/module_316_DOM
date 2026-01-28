@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Object Model Exercise</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+        .btn:hover { background: #0056b3; }
+        
+        .info-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .timer-display {
+            font-size: 48px;
+            text-align: center;
+            font-family: monospace;
+            padding: 20px;
+        }
+        
+        .storage-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        body.dark-mode section {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+        body.dark-mode .info-box {
+            background: #333;
+        }
+        
+        .online-status {
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .online-status.online { background: #28a745; color: white; }
+        .online-status.offline { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Browser Object Model Practice</h1>
+
+    <section id="section-1">
+        <h2>Part 1: Window Properties</h2>
+        <button class="btn" id="show-window-info">Show Window Info</button>
+        <div class="info-box" id="window-info"></div>
+    </section>
+
+    <section id="section-2">
+        <h2>Part 2: Dialog Methods</h2>
+        <button class="btn" id="show-alert">Show Alert</button>
+        <button class="btn" id="show-confirm">Show Confirm</button>
+        <button class="btn" id="show-prompt">Show Prompt</button>
+        <p id="dialog-result"></p>
+    </section>
+
+    <section id="section-3">
+        <h2>Part 3: Location Object</h2>
+        <button class="btn" id="show-location-info">Show Location Info</button>
+        <div class="info-box" id="location-info"></div>
+        <br>
+        <button class="btn" id="add-hash">Add #section Hash</button>
+        <button class="btn" id="reload-page">Reload Page</button>
+    </section>
+
+    <section id="section-4">
+        <h2>Part 4: Navigator Object</h2>
+        <button class="btn" id="show-navigator-info">Show Navigator Info</button>
+        <div class="info-box" id="navigator-info"></div>
+        <div class="online-status" id="online-status">Checking...</div>
+    </section>
+
+    <section id="section-5">
+        <h2>Part 5: Timers</h2>
+        <div class="timer-display" id="timer-display">00:00</div>
+        <button class="btn" id="start-timer">Start</button>
+        <button class="btn" id="stop-timer">Stop</button>
+        <button class="btn" id="reset-timer">Reset</button>
+        <br><br>
+        <button class="btn" id="countdown-btn">5 Second Countdown</button>
+        <div id="countdown-display"></div>
+    </section>
+
+    <section id="section-6">
+        <h2>Part 6: Local Storage</h2>
+        <input type="text" id="storage-key" placeholder="Key">
+        <input type="text" id="storage-value" placeholder="Value">
+        <button class="btn" id="save-storage">Save</button>
+        <button class="btn" id="clear-storage">Clear All</button>
+        <div id="storage-list"></div>
+    </section>
+
+    <section id="section-7">
+        <h2>Part 7: Dark Mode with Persistence</h2>
+        <button class="btn" id="toggle-dark-mode">Toggle Dark Mode</button>
+    </section>
+
+    <section id="section-8">
+        <h2>Part 8: Scroll & Screen</h2>
+        <button class="btn" id="scroll-top">Scroll to Top</button>
+        <button class="btn" id="scroll-bottom">Scroll to Bottom</button>
+        <button class="btn" id="show-screen-info">Show Screen Info</button>
+        <div class="info-box" id="screen-info"></div>
+    </section>
+
+    <!-- Add some height for scrolling -->
+    <div style="height: 100px;"></div>
+
+    <script src="exercise.js"></script>
+</body>
+</html>

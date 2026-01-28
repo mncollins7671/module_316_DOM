@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversal Exercise</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        .container {
+            border: 2px solid blue;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <header id="page-header">
+            <h1>DOM Traversal Practice</h1>
+            <nav>
+                <ul id="nav-list">
+                    <li class="nav-item">Home</li>
+                    <li class="nav-item active">About</li>
+                    <li class="nav-item">Services</li>
+                    <li class="nav-item">Contact</li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="content">
+            <article class="card" id="card-1">
+                <h2>Card Title 1</h2>
+                <p>This is the first card paragraph.</p>
+                <footer>
+                    <button class="action-btn">Action 1</button>
+                </footer>
+            </article>
+
+            <article class="card" id="card-2">
+                <h2>Card Title 2</h2>
+                <p>This is the second card paragraph.</p>
+                <footer>
+                    <button class="action-btn">Action 2</button>
+                </footer>
+            </article>
+
+            <article class="card" id="card-3">
+                <h2>Card Title 3</h2>
+                <p>This is the third card paragraph.</p>
+                <footer>
+                    <button class="action-btn">Action 3</button>
+                </footer>
+            </article>
+        </main>
+
+        <aside id="sidebar">
+            <h3>Sidebar</h3>
+            <ul>
+                <li>Link 1</li>
+                <li>Link 2</li>
+                <li>Link 3</li>
+            </ul>
+        </aside>
+    </div>
+
+    <script src="exercise.js"></script>
+</body>
+</html>

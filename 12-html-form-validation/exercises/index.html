@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Validation Exercise</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        form {
+            max-width: 500px;
+        }
+        
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        /* Basic validation styles */
+        input:valid, select:valid, textarea:valid {
+            border-color: #28a745;
+        }
+        
+        input:focus:invalid, select:focus:invalid {
+            border-color: #dc3545;
+        }
+        
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .required-star {
+            color: red;
+        }
+        
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button[type="submit"]:hover {
+            background: #0056b3;
+        }
+        
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            margin: 10px 0;
+        }
+        
+        .checkbox-label input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        /* Number inputs special styling */
+        input:in-range {
+            background: #e8f5e9;
+        }
+        
+        input:out-of-range {
+            background: #ffebee;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Form Validation Exercises</h1>
+
+    <!-- Exercise 1: Basic Required Fields -->
+    <section>
+        <h2>Exercise 1: Required Fields</h2>
+        <p>Add the <code>required</code> attribute to make these fields mandatory.</p>
+        <form id="form1">
+            <!-- TODO: Add required attribute to these fields -->
+            <label>First Name <span class="required-star">*</span></label>
+            <input type="text" name="firstName" id="firstName1">
+            
+            <label>Last Name <span class="required-star">*</span></label>
+            <input type="text" name="lastName" id="lastName1">
+            
+            <label>Email <span class="required-star">*</span></label>
+            <input type="text" name="email" id="email1">
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 2: Input Types -->
+    <section>
+        <h2>Exercise 2: Input Types with Built-in Validation</h2>
+        <p>Use the correct input <code>type</code> for each field.</p>
+        <form id="form2">
+            <!-- TODO: Change type="text" to appropriate types -->
+            <label>Email</label>
+            <input type="text" name="email" id="email2">
+            
+            <label>Website</label>
+            <input type="text" name="website" id="website2">
+            
+            <label>Age</label>
+            <input type="text" name="age" id="age2">
+            
+            <label>Birthday</label>
+            <input type="text" name="birthday" id="birthday2">
+            
+            <label>Favorite Color</label>
+            <input type="text" name="color" id="color2">
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 3: Pattern Validation -->
+    <section>
+        <h2>Exercise 3: Pattern Validation</h2>
+        <p>Add <code>pattern</code> and <code>title</code> attributes for custom validation.</p>
+        <form id="form3">
+            <!-- TODO: Add pattern for phone (123-456-7890) -->
+            <label>Phone Number</label>
+            <input type="tel" name="phone" id="phone3">
+            <span class="hint">Format: 123-456-7890</span>
+            
+            <!-- TODO: Add pattern for zip code (5 digits) -->
+            <label>Zip Code</label>
+            <input type="text" name="zip" id="zip3">
+            <span class="hint">5-digit zip code</span>
+            
+            <!-- TODO: Add pattern for username (alphanumeric, 4-12 chars) -->
+            <label>Username</label>
+            <input type="text" name="username" id="username3">
+            <span class="hint">4-12 alphanumeric characters</span>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 4: Length Constraints -->
+    <section>
+        <h2>Exercise 4: Length Constraints</h2>
+        <p>Add <code>minlength</code> and <code>maxlength</code> attributes.</p>
+        <form id="form4">
+            <!-- TODO: Username: 3-20 characters, required -->
+            <label>Username (3-20 characters) <span class="required-star">*</span></label>
+            <input type="text" name="username" id="username4">
+            
+            <!-- TODO: Bio: max 150 characters -->
+            <label>Short Bio (max 150 characters)</label>
+            <textarea name="bio" id="bio4" rows="3"></textarea>
+            
+            <!-- TODO: Tweet: max 280 characters -->
+            <label>Tweet (max 280 characters)</label>
+            <textarea name="tweet" id="tweet4" rows="2"></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 5: Number Constraints -->
+    <section>
+        <h2>Exercise 5: Number Constraints</h2>
+        <p>Add <code>min</code>, <code>max</code>, and <code>step</code> attributes.</p>
+        <form id="form5">
+            <!-- TODO: Age: 18-100 -->
+            <label>Age (18-100)</label>
+            <input type="number" name="age" id="age5">
+            
+            <!-- TODO: Quantity: 1-10, whole numbers only -->
+            <label>Quantity (1-10)</label>
+            <input type="number" name="quantity" id="quantity5">
+            
+            <!-- TODO: Price: $0.01 minimum, cents allowed -->
+            <label>Price ($0.01 minimum)</label>
+            <input type="number" name="price" id="price5">
+            
+            <!-- TODO: Rating: 1-5, half stars allowed (0.5 step) -->
+            <label>Rating (1-5, half stars allowed)</label>
+            <input type="number" name="rating" id="rating5">
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 6: Date Constraints -->
+    <section>
+        <h2>Exercise 6: Date Constraints</h2>
+        <p>Add date constraints using <code>min</code> and <code>max</code>.</p>
+        <form id="form6">
+            <!-- TODO: Only allow future dates (set min to today) -->
+            <label>Appointment Date (future only)</label>
+            <input type="date" name="appointment" id="appointment6">
+            
+            <!-- TODO: Only allow past dates (set max to today) -->
+            <label>Birth Date (past only)</label>
+            <input type="date" name="birthdate" id="birthdate6">
+            
+            <!-- TODO: Business hours only: 9:00 AM - 5:00 PM -->
+            <label>Meeting Time (9am-5pm)</label>
+            <input type="time" name="meeting" id="meeting6">
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 7: Select Validation -->
+    <section>
+        <h2>Exercise 7: Select Validation</h2>
+        <p>Make the select field required (hint: first option needs empty value).</p>
+        <form id="form7">
+            <!-- TODO: Make this select required -->
+            <label>Country <span class="required-star">*</span></label>
+            <select name="country" id="country7">
+                <option>Select a country</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="au">Australia</option>
+            </select>
+            
+            <!-- TODO: Make this select required -->
+            <label>T-Shirt Size <span class="required-star">*</span></label>
+            <select name="size" id="size7">
+                <option>Choose size</option>
+                <option value="xs">Extra Small</option>
+                <option value="s">Small</option>
+                <option value="m">Medium</option>
+                <option value="l">Large</option>
+                <option value="xl">Extra Large</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 8: Checkbox and Radio Validation -->
+    <section>
+        <h2>Exercise 8: Checkbox and Radio Validation</h2>
+        <p>Make the terms checkbox and radio buttons required.</p>
+        <form id="form8">
+            <!-- TODO: Make radio group required -->
+            <fieldset>
+                <legend>Preferred Contact Method <span class="required-star">*</span></legend>
+                <label class="checkbox-label">
+                    <input type="radio" name="contact" value="email"> Email
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="contact" value="phone"> Phone
+                </label>
+                <label class="checkbox-label">
+                    <input type="radio" name="contact" value="mail"> Mail
+                </label>
+            </fieldset>
+            
+            <!-- TODO: Make checkbox required -->
+            <label class="checkbox-label">
+                <input type="checkbox" name="terms" id="terms8">
+                I agree to the terms and conditions <span class="required-star">*</span>
+            </label>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 9: Complete Registration Form -->
+    <section>
+        <h2>Exercise 9: Build a Complete Registration Form</h2>
+        <p>Create a full registration form with proper validation.</p>
+        <form id="form9">
+            <!-- 
+            Build a form with:
+            1. Full name (required, letters and spaces only)
+            2. Email (required, must be valid email)
+            3. Password (required, min 8 chars)
+            4. Age (required, 18-120)
+            5. Phone (optional, format: 123-456-7890)
+            6. Country (required, dropdown)
+            7. Terms checkbox (required)
+            -->
+            
+            <!-- Your form fields here -->
+            
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Exercise 10: Password Requirements Form -->
+    <section>
+        <h2>Exercise 10: Strong Password Validation</h2>
+        <p>Create a password field that requires: 8+ chars, uppercase, lowercase, and number.</p>
+        <form id="form10">
+            <label>Username <span class="required-star">*</span></label>
+            <!-- TODO: Add appropriate validation -->
+            <input type="text" name="username" id="username10">
+            
+            <label>Password <span class="required-star">*</span></label>
+            <!-- TODO: Add pattern for strong password -->
+            <input type="password" name="password" id="password10">
+            <span class="hint">Minimum 8 characters with uppercase, lowercase, and number</span>
+            
+            <button type="submit">Create Account</button>
+        </form>
+    </section>
+
+    <script src="exercise.js"></script>
+</body>
+</html>

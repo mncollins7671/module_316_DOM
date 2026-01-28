@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styles and Classes Exercise</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #0056b3; }
+        .btn.active { background: #28a745; }
+        .btn.disabled { 
+            background: #ccc; 
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #007bff;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .hidden { display: none !important; }
+        .highlight { background: yellow; border: 2px solid orange; }
+        .rounded { border-radius: 50%; }
+        .large { width: 200px; height: 200px; font-size: 24px; }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        body.dark-mode section {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+        
+        /* Navigation styles */
+        .nav-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 2px;
+            background: #eee;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+        }
+        .nav-link.active {
+            background: #007bff;
+            color: white;
+        }
+        
+        /* Accordion */
+        .accordion-item {
+            border: 1px solid #ddd;
+            margin: 5px 0;
+        }
+        .accordion-header {
+            padding: 15px;
+            background: #f5f5f5;
+            cursor: pointer;
+        }
+        .accordion-header:hover { background: #eee; }
+        .accordion-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .accordion-content.open {
+            padding: 15px;
+            max-height: 200px;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 30px;
+            background: #eee;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #007bff;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .progress-bar.low { background: #dc3545; }
+        .progress-bar.medium { background: #ffc107; }
+        .progress-bar.high { background: #28a745; }
+        
+        /* Cards */
+        .card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            width: 150px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .card.selected {
+            border-color: #007bff;
+            background: #e7f1ff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Styles and Classes Practice</h1>
+
+    <section id="section-1">
+        <h2>Part 1: Inline Styles</h2>
+        <div id="style-box" class="box">Box</div>
+        <button class="btn" id="change-color-btn">Change Color</button>
+        <button class="btn" id="change-size-btn">Change Size</button>
+        <button class="btn" id="reset-style-btn">Reset</button>
+    </section>
+
+    <section id="section-2">
+        <h2>Part 2: classList Methods</h2>
+        <div id="class-box" class="box">Box</div>
+        <button class="btn" id="toggle-round-btn">Toggle Round</button>
+        <button class="btn" id="toggle-large-btn">Toggle Large</button>
+        <button class="btn" id="toggle-hidden-btn">Toggle Hidden</button>
+        <button class="btn" id="add-highlight-btn">Add Highlight</button>
+        <button class="btn" id="remove-highlight-btn">Remove Highlight</button>
+    </section>
+
+    <section id="section-3">
+        <h2>Part 3: Dark Mode</h2>
+        <button class="btn" id="dark-mode-btn">Toggle Dark Mode</button>
+    </section>
+
+    <section id="section-4">
+        <h2>Part 4: Navigation Active State</h2>
+        <nav id="main-nav">
+            <a href="#" class="nav-link active" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="about">About</a>
+            <a href="#" class="nav-link" data-page="services">Services</a>
+            <a href="#" class="nav-link" data-page="contact">Contact</a>
+        </nav>
+        <p id="current-page">Current page: Home</p>
+    </section>
+
+    <section id="section-5">
+        <h2>Part 5: Accordion</h2>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">Section 1</div>
+                <div class="accordion-content">
+                    <p>Content for section 1. This is some sample text that appears when the section is expanded.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">Section 2</div>
+                <div class="accordion-content">
+                    <p>Content for section 2. More sample text for the second accordion section.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">Section 3</div>
+                <div class="accordion-content">
+                    <p>Content for section 3. And even more content for the third section.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-6">
+        <h2>Part 6: Progress Bar</h2>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+        </div>
+        <br>
+        <input type="range" id="progress-slider" min="0" max="100" value="0">
+    </section>
+
+    <section id="section-7">
+        <h2>Part 7: Card Selection</h2>
+        <div id="cards-container">
+            <div class="card" data-value="1">Card 1</div>
+            <div class="card" data-value="2">Card 2</div>
+            <div class="card" data-value="3">Card 3</div>
+            <div class="card" data-value="4">Card 4</div>
+        </div>
+        <p>Selected: <span id="selected-cards">None</span></p>
+    </section>
+
+    <section id="section-8">
+        <h2>Part 8: Button States</h2>
+        <button class="btn" id="action-btn">Click Me</button>
+        <button class="btn" id="loading-btn">Submit</button>
+    </section>
+
+    <script src="exercise.js"></script>
+</body>
+</html>

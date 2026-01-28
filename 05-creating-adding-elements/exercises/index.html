@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Elements Exercise</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .card h3 { margin-top: 0; color: #333; }
+        .card p { color: #666; }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .todo-item .delete-btn {
+            margin-left: auto;
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn:hover { background: #0056b3; }
+        
+        .nav-item {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            margin: 2px;
+            text-decoration: none;
+        }
+        
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Creating Elements Practice</h1>
+
+    <section id="section-1">
+        <h2>Part 1: Basic Element Creation</h2>
+        <div id="basic-output"></div>
+    </section>
+
+    <section id="section-2">
+        <h2>Part 2: List Building</h2>
+        <ul id="fruit-list">
+            <li>Apple</li>
+            <li>Banana</li>
+        </ul>
+    </section>
+
+    <section id="section-3">
+        <h2>Part 3: Cards</h2>
+        <div id="cards-container"></div>
+    </section>
+
+    <section id="section-4">
+        <h2>Part 4: Todo List</h2>
+        <div id="todo-container">
+            <div id="todo-list"></div>
+        </div>
+    </section>
+
+    <section id="section-5">
+        <h2>Part 5: Navigation</h2>
+        <nav id="main-nav"></nav>
+    </section>
+
+    <section id="section-6">
+        <h2>Part 6: Button Factory</h2>
+        <div id="button-container"></div>
+        <div id="button-output"></div>
+    </section>
+
+    <script src="exercise.js"></script>
+</body>
+</html>

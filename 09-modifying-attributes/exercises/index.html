@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifying Attributes Exercise</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+        .btn:hover { background: #0056b3; }
+        .btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .image-box {
+            max-width: 300px;
+            margin: 20px 0;
+        }
+        .image-box img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        .link-list a {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f5f5f5;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+        }
+        .link-list a:hover { background: #e0e0e0; }
+        .link-list a[target="_blank"]::after { content: " ↗"; }
+        
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            width: 200px;
+        }
+        .product-card.selected {
+            border-color: #007bff;
+            background: #f0f7ff;
+        }
+        
+        .tab-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .tabs {
+            background: #f5f5f5;
+            display: flex;
+        }
+        .tab {
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            flex: 1;
+        }
+        .tab.active {
+            background: white;
+            border-bottom: 2px solid #007bff;
+        }
+        .tab-content {
+            padding: 20px;
+            display: none;
+        }
+        .tab-content.active { display: block; }
+        
+        .attribute-display {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modifying Attributes Practice</h1>
+
+    <section id="section-1">
+        <h2>Part 1: Basic getAttribute/setAttribute</h2>
+        <a href="https://example.com" id="test-link" target="_blank" title="Example Site">
+            Visit Example
+        </a>
+        <div class="attribute-display" id="link-info"></div>
+        <br><br>
+        <button class="btn" id="show-attrs-btn">Show Attributes</button>
+        <button class="btn" id="change-href-btn">Change URL</button>
+        <button class="btn" id="toggle-target-btn">Toggle Target</button>
+    </section>
+
+    <section id="section-2">
+        <h2>Part 2: Image Attributes</h2>
+        <div class="image-box">
+            <img 
+                id="main-image" 
+                src="https://picsum.photos/300/200?random=1" 
+                alt="Random image 1"
+                loading="lazy"
+            >
+        </div>
+        <button class="btn" id="change-image-btn">Change Image</button>
+        <button class="btn" id="show-image-info-btn">Show Image Info</button>
+        <div class="attribute-display" id="image-info"></div>
+    </section>
+
+    <section id="section-3">
+        <h2>Part 3: Form Attributes</h2>
+        <form id="demo-form">
+            <input 
+                type="text" 
+                id="name-input" 
+                name="username"
+                placeholder="Enter your name"
+                maxlength="50"
+            >
+            <br><br>
+            <label>
+                <input type="checkbox" id="agree-checkbox">
+                I agree to the terms
+            </label>
+            <br><br>
+            <button type="submit" id="submit-btn" disabled>Submit</button>
+        </form>
+    </section>
+
+    <section id="section-4">
+        <h2>Part 4: Data Attributes</h2>
+        <div id="products-container">
+            <div class="product-card" data-id="101" data-price="29.99" data-category="electronics" data-in-stock="true">
+                <h4>Wireless Mouse</h4>
+                <p class="price">$29.99</p>
+                <button class="btn add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card" data-id="102" data-price="49.99" data-category="electronics" data-in-stock="true">
+                <h4>Mechanical Keyboard</h4>
+                <p class="price">$49.99</p>
+                <button class="btn add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card" data-id="103" data-price="19.99" data-category="accessories" data-in-stock="false">
+                <h4>USB Cable</h4>
+                <p class="price">$19.99</p>
+                <button class="btn add-to-cart-btn" disabled>Out of Stock</button>
+            </div>
+        </div>
+        <p>Cart: <span id="cart-display">Empty</span></p>
+    </section>
+
+    <section id="section-5">
+        <h2>Part 5: Tab Interface</h2>
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" data-tab="overview">Overview</button>
+                <button class="tab" data-tab="features">Features</button>
+                <button class="tab" data-tab="specs">Specifications</button>
+            </div>
+            <div class="tab-content active" data-content="overview">
+                <h3>Overview</h3>
+                <p>This is the overview tab content. It provides a general introduction.</p>
+            </div>
+            <div class="tab-content" data-content="features">
+                <h3>Features</h3>
+                <p>This is the features tab content. It lists all the amazing features.</p>
+            </div>
+            <div class="tab-content" data-content="specs">
+                <h3>Specifications</h3>
+                <p>This is the specifications tab content. Technical details go here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-6">
+        <h2>Part 6: Links Management</h2>
+        <div class="link-list" id="link-list">
+            <a href="/home">Home</a>
+            <a href="/about">About</a>
+            <a href="https://external.com">External Site</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <br>
+        <button class="btn" id="open-external-btn">Open External in New Tab</button>
+        <button class="btn" id="add-download-btn">Add Download Attribute</button>
+    </section>
+
+    <script src="exercise.js"></script>
+</body>
+</html>

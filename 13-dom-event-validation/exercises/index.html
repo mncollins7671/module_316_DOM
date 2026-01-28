@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Event-Based Validation Exercises</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        form { max-width: 500px; }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #dc3545;
+        }
+        
+        .form-group.error .error-message {
+            display: block;
+        }
+        
+        .form-group.success input,
+        .form-group.success textarea {
+            border-color: #28a745;
+        }
+        
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        button[type="submit"] {
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button[type="submit"]:hover {
+            background: #0056b3;
+        }
+        
+        button[type="submit"]:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .char-count {
+            font-size: 12px;
+            color: #666;
+            text-align: right;
+            margin-top: 3px;
+        }
+        
+        .char-count.warning { color: orange; }
+        .char-count.danger { color: red; }
+        
+        .strength-meter {
+            height: 5px;
+            background: #eee;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background 0.3s;
+        }
+        
+        .strength-text {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        
+        .validation-icon {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            font-size: 18px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ddd;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM Event-Based Validation Exercises</h1>
+
+    <!-- Exercise 1: Basic Validation on Submit -->
+    <section>
+        <h2>Exercise 1: Validate on Submit</h2>
+        <p>Prevent form submission if fields are empty. Show errors.</p>
+        <form id="form1" novalidate>
+            <div class="form-group">
+                <label for="name1">Name</label>
+                <input type="text" id="name1" name="name" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email1">Email</label>
+                <input type="email" id="email1" name="email" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 2: Validate on Blur -->
+    <section>
+        <h2>Exercise 2: Validate on Blur</h2>
+        <p>Validate each field when the user leaves it (blur event).</p>
+        <form id="form2" novalidate>
+            <div class="form-group">
+                <label for="username2">Username (4-20 chars)</label>
+                <input type="text" id="username2" name="username" 
+                       required minlength="4" maxlength="20">
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="age2">Age (18-100)</label>
+                <input type="number" id="age2" name="age" 
+                       required min="18" max="100">
+                <span class="error-message"></span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 3: Real-time Validation -->
+    <section>
+        <h2>Exercise 3: Real-time Validation (on input)</h2>
+        <p>Validate as the user types for immediate feedback.</p>
+        <form id="form3" novalidate>
+            <div class="form-group">
+                <label for="email3">Email</label>
+                <input type="email" id="email3" name="email" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone3">Phone (123-456-7890)</label>
+                <input type="tel" id="phone3" name="phone" 
+                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <span class="error-message"></span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 4: Password Confirmation -->
+    <section>
+        <h2>Exercise 4: Password Match Validation</h2>
+        <p>Ensure passwords match using setCustomValidity().</p>
+        <form id="form4" novalidate>
+            <div class="form-group">
+                <label for="password4">Password</label>
+                <input type="password" id="password4" name="password" 
+                       required minlength="8">
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm4">Confirm Password</label>
+                <input type="password" id="confirm4" name="confirmPassword" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 5: Character Counter -->
+    <section>
+        <h2>Exercise 5: Character Counter</h2>
+        <p>Show remaining characters with color warnings.</p>
+        <form id="form5" novalidate>
+            <div class="form-group">
+                <label for="tweet5">Tweet (max 280 chars)</label>
+                <textarea id="tweet5" name="tweet" maxlength="280" rows="3"></textarea>
+                <div class="char-count"><span id="char-current5">0</span>/280</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="bio5">Bio (max 150 chars)</label>
+                <textarea id="bio5" name="bio" maxlength="150" rows="2"></textarea>
+                <div class="char-count"><span id="char-current-bio5">0</span>/150</div>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 6: Password Strength Meter -->
+    <section>
+        <h2>Exercise 6: Password Strength Indicator</h2>
+        <p>Show password strength as user types.</p>
+        <form id="form6" novalidate>
+            <div class="form-group">
+                <label for="password6">Password</label>
+                <input type="password" id="password6" name="password" required>
+                <div class="strength-meter">
+                    <div class="strength-bar" id="strength-bar6"></div>
+                </div>
+                <div class="strength-text" id="strength-text6">Enter a password</div>
+                <span class="hint">Use uppercase, lowercase, numbers, and symbols</span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 7: Custom Error Messages -->
+    <section>
+        <h2>Exercise 7: Custom Error Messages</h2>
+        <p>Create user-friendly error messages for each validation type.</p>
+        <form id="form7" novalidate>
+            <div class="form-group">
+                <label for="username7">Username</label>
+                <input type="text" id="username7" name="username" 
+                       required minlength="4" pattern="[A-Za-z0-9_]+">
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email7">Email</label>
+                <input type="email" id="email7" name="email" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="website7">Website</label>
+                <input type="url" id="website7" name="website">
+                <span class="error-message"></span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 8: Disable Submit Until Valid -->
+    <section>
+        <h2>Exercise 8: Enable Submit When Valid</h2>
+        <p>Keep submit button disabled until all fields are valid.</p>
+        <form id="form8" novalidate>
+            <div class="form-group">
+                <label for="name8">Name</label>
+                <input type="text" id="name8" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email8">Email</label>
+                <input type="email" id="email8" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="terms8" name="terms" required>
+                    I agree to the terms
+                </label>
+            </div>
+            
+            <button type="submit" id="submit8" disabled>Submit</button>
+        </form>
+    </section>
+
+    <!-- Exercise 9: Complete Signup Form -->
+    <section>
+        <h2>Exercise 9: Complete Signup Form</h2>
+        <p>Combine all techniques into a fully validated form.</p>
+        <form id="form9" novalidate>
+            <div class="form-group">
+                <label for="username9">Username</label>
+                <input type="text" id="username9" name="username" 
+                       required minlength="4" maxlength="20"
+                       pattern="[A-Za-z0-9_]+">
+                <span class="error-message"></span>
+                <span class="hint">4-20 characters, letters, numbers, and underscores</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email9">Email</label>
+                <input type="email" id="email9" name="email" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="password9">Password</label>
+                <input type="password" id="password9" name="password" 
+                       required minlength="8">
+                <div class="strength-meter">
+                    <div class="strength-bar" id="strength-bar9"></div>
+                </div>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm9">Confirm Password</label>
+                <input type="password" id="confirm9" name="confirmPassword" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="bio9">Bio</label>
+                <textarea id="bio9" name="bio" maxlength="200" rows="3"></textarea>
+                <div class="char-count"><span id="char-count9">0</span>/200</div>
+            </div>
+            
+            <button type="submit">Create Account</button>
+        </form>
+    </section>
+
+    <!-- Exercise 10: Focus First Error -->
+    <section>
+        <h2>Exercise 10: Focus First Invalid Field</h2>
+        <p>After submit attempt, focus the first field with an error.</p>
+        <form id="form10" novalidate>
+            <div class="form-group">
+                <label for="first10">First Name</label>
+                <input type="text" id="first10" name="firstName" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="last10">Last Name</label>
+                <input type="text" id="last10" name="lastName" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="email10">Email</label>
+                <input type="email" id="email10" name="email" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone10">Phone</label>
+                <input type="tel" id="phone10" name="phone" 
+                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <span class="error-message"></span>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <script src="exercise.js"></script>
+</body>
+</html>
