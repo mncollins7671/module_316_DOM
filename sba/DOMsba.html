@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading List</title>
+    <link rel="stylesheet" href="DOMsba.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕮 Reading List</h1>
+            <p class="subtitle">What books are you reading or want to read?</p>
+        </header>
+
+        <!-- Book Form -->
+        <section class="book-form-section">
+            <h2>Add New Book</h2>
+            <form id="book-form" novalidate>
+                <div class="form-group">
+                    <label for="book-title">Title <span class="required">*</span></label>
+                    <input type="text" id="book-title" name="title" 
+                           required minlength="1" maxlength="50"
+                           placeholder="Enter book title">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" name="author" maxlength="50"
+                           placeholder="Enter author">
+                </div>
+
+                <div class="form-group">
+                    <label for="book-description">Description</label>
+                    <textarea id="book-description" name="description" 
+                              rows="2" maxlength="300"
+                              placeholder="Add details (optional)"></textarea>
+                    <div class="char-count"><span id="desc-count">0</span>/300</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="book-genre">Genre</label>
+                        <select id="book-genre" name="genre">
+                            <option value="" disabled selected>Select genre</option>
+                            <option value="romance">Romance</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="mystery">Mystery/Thriller</option>
+                            <option value="science-fiction">Science Fiction</option>
+                            <option value="self-help">Self-Help</option>
+                            <option value="horror">Horror</option>
+                            <option value="biography">Biography</option>
+                            <option value="historical">Historical</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" id="add-book-btn">+ Add Book</button>
+            </form>
+        </section>
+
+        <!-- Filter Controls -->
+        <section class="filter-section">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Waiting to read!</button>
+                <button class="filter-btn" data-filter="active">Reading</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <div class="book-stats">
+                <span id="book-count">0 books</span>
+            </div>
+        </section>
+
+        <!-- Book List -->
+        <section class="book-list-section">
+            <ul id="book-list"></ul>
+            <p id="empty-message" class="empty-message">
+                No books yet. Add one above! ☝️
+            </p>
+        </section>
+
+        <!-- Footer Actions -->
+        <footer class="footer-actions">
+            <button id="clear-completed" class="btn-secondary">
+                Clear Completed Books
+            </button>
+        </footer>
+    </div>
+
+    <!-- Book Template (hidden) -->
+    <template id="book-template">
+        <li class="book-item" data-id="">
+            <div class="book-checkbox">
+                <input type="checkbox" class="waiting-checkbox" title="Waiting to read">
+                <input type="checkbox" class="reading-checkbox" title="Reading">
+                <input type="checkbox" class="complete-checkbox" title="Mark complete">
+            </div>
+            <div class="book-content">
+                <h3 class="book-title"></h3>
+                <p class="book-author"></p>
+                <p class="book-description"></p>
+                <div class="book-meta">
+                    <span class="book-genre-badge"></span>
+                </div>
+            </div>
+            <div class="book-actions">
+                <button class="btn-edit" title="Edit book">✏️</button>
+                <button class="btn-delete" title="Delete book">🗑️</button>
+            </div>
+        </li>
+    </template>
+
+    <script src="DOMsba.js"></script>
+</body>
+</html>
